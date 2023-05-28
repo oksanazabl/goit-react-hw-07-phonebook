@@ -1,6 +1,6 @@
 import css from './PhonebookContatcs.module.css';
 
-import {   deleteContact } from 'redux/contactSlice';
+import { deleteContact } from 'redux/operations';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectContacts  } from 'redux/selectors';
 

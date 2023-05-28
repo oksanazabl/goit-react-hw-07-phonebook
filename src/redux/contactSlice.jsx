@@ -3,6 +3,15 @@ import { fetchContacts, addContact, deleteContact } from './operations';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
+const handlePending = state => {
+  state.isLoading = true;
+};
+
+const handleRejected = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
+};
+
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: {
@@ -10,6 +19,8 @@ const contactsSlice = createSlice({
     isLoading: false,
     error: null,
   },
+
+  reducers: {},
 
   extraReducers: {
     [fetchContacts.pending]: handlePending,
@@ -43,13 +54,7 @@ const persistConfig = {
   storage,
 };
 
-const handlePending = state => {
-  state.isLoading = true;
-};
-const handleRejected = (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload;
-};
+
 
 export const contactsReducer = persistReducer(
   persistConfig,
